@@ -311,10 +311,46 @@ console.log(getPropertyValues(person));
 
 //8. Escribe una función que tome dos objetos literales como argumentos y devuelva true si tienen las mismas propiedades y los mismos valores en esas propiedades, o false si son diferentes.
 
+function areObjectsEqual(obj1, obj2) {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    if (keys1.length !== keys2.length) return false;
 
+    for (let key of keys1) {
+        if (obj1[key] !== obj2[key]) return false;
+    }
+    return true;
+}
+
+const person1 = {
+    name: "Anna",
+    age: 40
+};
+
+const person2 = {
+    name: "Inna",
+    age: 30,
+    surname: "Peg"
+};
+
+console.log(areObjectsEqual(person, person1));
+console.log(areObjectsEqual(person, person2));
 
 //9. Escribe una función que tome un objeto literal como argumento y devuelva una copia exacta de ese objeto.
 
+function copyObject(obj) {
+    return { ...obj };
+}
+
+const copy = copyObject(person);
+console.log(copy);
+
 //10. Escribe una función que tome dos objetos literales como argumentos y devuelva un nuevo objeto con todas las propiedades de ambos objetos. Si hay propiedades con el mismo nombre, el valor del segundo objeto deberá prevalecer.
 
+function mergeObjects(obj1, obj2) {
+    return { ...obj1, ...obj2 };
+}
 
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+console.log(mergeObjects(obj1, obj2));
